@@ -24,7 +24,6 @@ defmodule Foodtrucks.Truck do
 
     struct(__MODULE__, opts)
     |> set_color_for_open_status(today)
-    |> IO.inspect
   end
 
   def translate({:coldtruck, "Y"}), do: {:coldtruck, true}
