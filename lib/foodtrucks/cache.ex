@@ -1,5 +1,6 @@
 defmodule Foodtrucks.Cache do
   import Cachex.Spec
+
   @moduledoc """
   Cache date from the SF Food Truck WebService
   """
@@ -12,12 +13,13 @@ defmodule Foodtrucks.Cache do
       id: @cache_table,
       type: :supervisor,
       start: {
-        Cachex, :start_link,
+        Cachex,
+        :start_link,
         [
           @cache_table,
           [
             warmers: [
-              warmer(module: Foodtrucks.CacheWarmer , state: "")
+              warmer(module: Foodtrucks.CacheWarmer, state: "")
             ]
           ]
         ]

@@ -23,7 +23,7 @@ config :tailwind,
       --input=css/app.css
       --output=../priv/static/assets/app.css
     ),
-    cd: Path.expand("../assets", __DIR__),
+    cd: Path.expand("../assets", __DIR__)
   ]
 
 # Configure esbuild (the version is required)

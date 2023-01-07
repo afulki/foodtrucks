@@ -10,9 +10,9 @@ defmodule Foodtrucks.Sources.SanFranciscoFoodTruckApi do
     end
   end
 
-  defp parse_truck(truck) do
-    truck = truck 
-      |> Truck.new() 
+  defp parse_truck(truck_permit_data) do
+    truck = truck_permit_data |> Truck.new()
+
     {truck.permit, truck}
   end
 end

@@ -6,19 +6,19 @@ defmodule Foodtrucks.Query do
   alias Foodtrucks.{Cache, DayOfWeek}
 
   def all do
-    Cache.cache_name
+    Cache.cache_name()
     |> Cachex.stream!()
-    |> Enum.flat_map(fn entry(value: truck) -> [ truck ] end)
+    |> Enum.flat_map(fn entry(value: truck) -> [truck] end)
   end
 
   def open_today() do
-    today = DayOfWeek.today_as_string()
+    today = DayOfWeek.date_to_day_string()
 
-    Cache.cache_name
+    Cache.cache_name()
     |> Cachex.stream!()
-    |> Enum.flat_map(fn entry(value: truck) -> 
+    |> Enum.flat_map(fn entry(value: truck) ->
       cond do
-        truck.dayofweekstr == today -> [ truck ]
+        truck.dayofweekstr == today -> [truck]
         true -> []
       end
     end)

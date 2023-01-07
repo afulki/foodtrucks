@@ -15,12 +15,12 @@ defmodule Foodtrucks.Truck do
             optionaltext: ""
 
   def new(opts) do
-    opts = 
-      opts 
-      |> Enum.into(%{}, fn {k,v} -> {String.to_atom(k), v} end)
+    opts =
+      opts
+      |> Enum.into(%{}, fn {k, v} -> {String.to_atom(k), v} end)
       |> Enum.map(&translate/1)
-    
-    today = DayOfWeek.today_as_string()
+
+    today = DayOfWeek.date_to_day_string()
 
     struct(__MODULE__, opts)
     |> set_color_for_open_status(today)
@@ -34,12 +34,13 @@ defmodule Foodtrucks.Truck do
 
   def translate(truck), do: truck
 
-  def set_color_for_open_status(truck, today) do 
+  def set_color_for_open_status(truck, today) do
     cond do
-      truck.dayofweekstr == today -> 
-        %{truck | pin_color: "00FF00" }
-      true -> 
-        %{truck | pin_color: "FF0000"}
-        end
+      truck.dayofweekstr == today ->
+        %{truck | pin_color: "25C55E"}
+
+      true ->
+        %{truck | pin_color: "EF4444"}
+    end
   end
 end
