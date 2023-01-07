@@ -2,7 +2,9 @@ defmodule Foodtrucks.Cache do
   import Cachex.Spec
 
   @moduledoc """
-  Cache date from the SF Food Truck WebService
+  Cache data from the SF Food Truck WebService 
+
+  JSON endpoint : https://data.sfgov.org/resource/jjew-r69b.JSON
   """
   @cache_table :food_trucks
 

@@ -1,4 +1,7 @@
 defmodule Foodtrucks.Truck do
+  @moduledoc """
+  Structure containing the properties of a food truck permit. 
+  """
   alias Foodtrucks.DayOfWeek
 
   @derive Jason.Encoder
@@ -14,6 +17,10 @@ defmodule Foodtrucks.Truck do
             pin_color: "00FF00",
             optionaltext: ""
 
+  @doc """
+  Create a %Truck{} from the list of attributes, setting the color of the pin as appropriate
+  based on the current day of the week and the opening day of the food truck.
+  """
   def new(opts) do
     opts =
       opts
@@ -26,15 +33,15 @@ defmodule Foodtrucks.Truck do
     |> set_color_for_open_status(today)
   end
 
-  def translate({:coldtruck, "Y"}), do: {:coldtruck, true}
-  def translate({:coldtruck, "N"}), do: {:coldtruck, false}
+  defp translate({:coldtruck, "Y"}), do: {:coldtruck, true}
+  defp translate({:coldtruck, "N"}), do: {:coldtruck, false}
 
-  def translate({:latitude, latitude}), do: {:latitude, String.to_float(latitude)}
-  def translate({:longitude, longitude}), do: {:longitude, String.to_float(longitude)}
+  defp translate({:latitude, latitude}), do: {:latitude, String.to_float(latitude)}
+  defp translate({:longitude, longitude}), do: {:longitude, String.to_float(longitude)}
 
-  def translate(truck), do: truck
+  defp translate(truck), do: truck
 
-  def set_color_for_open_status(truck, today) do
+  defp set_color_for_open_status(truck, today) do
     cond do
       truck.dayofweekstr == today ->
         %{truck | pin_color: "25C55E"}

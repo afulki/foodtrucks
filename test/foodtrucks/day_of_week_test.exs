@@ -1,5 +1,6 @@
 defmodule Foodtrucks.DayOfWeekTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
+  doctest Foodtrucks.DayOfWeek
 
   alias Foodtrucks.DayOfWeek
 

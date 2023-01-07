@@ -21,8 +21,13 @@ The pins are colored:
 - <span style="color:green">green</span> to represent the food truck being open, 
 - <span style="color:red">red</span> to show it's closed. 
 
+Clicking on a pin shows an information page, details include the day the day and times the truck is open.
+
 As this is a demo application, no attempt was made to deal with refresh happening just before midnight and incorrect colors being shown for up to 59 minutes. This issue could have been resolved using [Quantum](https://hex.pm/packages/quantum) and creating a task to invalidate the cache.
 
+## Test & DocTests
+
+Some test have been added to show knowledge of testing, also added DocTests in [test/foodtrucks/day_of_week_test.exs](test/foodtrucks/day_of_week_test.exs)
 
 ## Dependencies
 
@@ -41,7 +46,7 @@ I'm using this library to integrate with the TailwindCSS *utility first* framewo
 The library allows the application to either reactively or proactively warm the cache, and I chose proactive warming to ensure the data was present when the first user visited the site.
 
 The code snippets show how the cache warmer is associated with the cache, and how a cache warmer is structured
-#### [lib/foodtrucks/cache.ex](./lib/foodtrucks/cachex.ex)
+#### [lib/foodtrucks/cache.ex](lib/foodtrucks/cache.ex)
 ```elixir
   def child_spec(_init_args) do
     %{
@@ -63,8 +68,9 @@ The code snippets show how the cache warmer is associated with the cache, and ho
   end
 ```
 
-#### lib/foodtrucks/cache_warmer.ex
+#### [ lib/foodtrucks/cache_warmer.ex ](lib/foodtrucks/cache_warmer.ex)
 
+The warmer is configured to refresh the cache every 60 minutes.
 ```elixir
   use Cachex.Warmer
   alias Foodtrucks.Sources.SanFranciscoFoodTruckApi
